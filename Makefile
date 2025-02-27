@@ -17,27 +17,33 @@ SRCS = \
 	sort/sort_three.c \
 	sort/sort_utils.c \
 	instructions/swap.c \
-	sort/push_swap.c \
+	sort/push_swap.c
 
 OBJS = $(SRCS:.c=.o)
 
-LIBFT = libft.a
+LIBFT_DIR = libftV2
+LIBFT = $(LIBFT_DIR)/libft.a
 
-INCLUDES = -Iincludes
+INCLUDES = -Iincludes -I$(LIBFT_DIR)/inc
 
-all: $(NAME)
+all: $(LIBFT) $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+
+$(LIBFT):
+	make -C $(LIBFT_DIR)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
+	make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
+	make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
