@@ -1,0 +1,16 @@
+# Objets et binaires compilés
+*.o
+*.a
+a.out
+*.dSYM/
+build/
+obj/
+
+# Éditeur / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Exécutables
+pushswapv1/push_swap
+pushswapv1/checker_linux
